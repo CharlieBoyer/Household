@@ -9,7 +9,7 @@ namespace Script
     {
         public float sensitivityX = 1f;
         public float sensitivityY = 1f;
-        const float InnateSensitivity = 100f;
+        private const float InnateSensitivity = 100f;
 
         private void Start()
         {
