@@ -11,7 +11,7 @@ namespace Script
         void Awake()
         {
             prototypeColor = Color.red;
-            _prototypeMeshRenderer
+            // _prototypeMeshRenderer
         }
 
         void Update()
