@@ -11,12 +11,11 @@ namespace Script
         public float sensitivityY = 1f;
         private const float InnateSensitivity = 100f;
 
-        private void Start()
+        private void Awake()
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-
 
     }
 }
