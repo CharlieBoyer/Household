@@ -18,6 +18,7 @@ namespace Script
         void OnMovementInput(InputAction.CallbackContext context)
         {
             _currentMovementInput = context.ReadValue<Vector2>();
+            Debug.Log(_currentMovementInput.y);
             _currentMovement.x = _currentMovementInput.x;
             _currentMovement.z = _currentMovementInput.y;
             _isMovementPressed = _currentMovementInput.x != 0 || _currentMovementInput.y != 0;
