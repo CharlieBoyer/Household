@@ -34,7 +34,7 @@ namespace Script
                     ""type"": ""Value"",
                     ""id"": ""29d77307-18e3-479b-8ce7-a899957f4542"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""NormalizeVector2"",
+                    ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
@@ -90,7 +90,7 @@ namespace Script
                     ""id"": ""766da6da-f749-4b1e-b0c1-d98b1dfb199d"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
-                    ""processors"": ""NormalizeVector2"",
+                    ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Move"",
                     ""isComposite"": false,
@@ -99,7 +99,7 @@ namespace Script
                 {
                     ""name"": ""Composite [Keyboard]"",
                     ""id"": ""9b1b9a5f-e269-42ed-80e4-33cd67086cbc"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -262,6 +262,45 @@ namespace Script
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""CameraControls"",
+            ""id"": ""32003ed4-67e3-49c3-9c6b-6df4cbf03501"",
+            ""actions"": [
+                {
+                    ""name"": ""Rotation"",
+                    ""type"": ""Value"",
+                    ""id"": ""92ad0f71-ea05-4ae0-8e5a-cf9388dcb95d"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d548370d-609b-474d-8605-b789425d8835"",
+                    ""path"": ""<Joystick>/stick/right"",
+                    ""interactions"": """",
+                    ""processors"": ""NormalizeVector2"",
+                    ""groups"": """",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb1953fc-b7c2-4752-b6e5-b678a75ad5a1"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": ""NormalizeVector2"",
+                    ""groups"": """",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -274,6 +313,9 @@ namespace Script
             m_CharacterControls_Shoot = m_CharacterControls.FindAction("Shoot", throwIfNotFound: true);
             m_CharacterControls_Aim = m_CharacterControls.FindAction("Aim", throwIfNotFound: true);
             m_CharacterControls_Reload = m_CharacterControls.FindAction("Reload", throwIfNotFound: true);
+            // CameraControls
+            m_CameraControls = asset.FindActionMap("CameraControls", throwIfNotFound: true);
+            m_CameraControls_Rotation = m_CameraControls.FindAction("Rotation", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -402,6 +444,39 @@ namespace Script
             }
         }
         public CharacterControlsActions @CharacterControls => new CharacterControlsActions(this);
+
+        // CameraControls
+        private readonly InputActionMap m_CameraControls;
+        private ICameraControlsActions m_CameraControlsActionsCallbackInterface;
+        private readonly InputAction m_CameraControls_Rotation;
+        public struct CameraControlsActions
+        {
+            private @PlayerInput m_Wrapper;
+            public CameraControlsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Rotation => m_Wrapper.m_CameraControls_Rotation;
+            public InputActionMap Get() { return m_Wrapper.m_CameraControls; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(CameraControlsActions set) { return set.Get(); }
+            public void SetCallbacks(ICameraControlsActions instance)
+            {
+                if (m_Wrapper.m_CameraControlsActionsCallbackInterface != null)
+                {
+                    @Rotation.started -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnRotation;
+                    @Rotation.performed -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnRotation;
+                    @Rotation.canceled -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnRotation;
+                }
+                m_Wrapper.m_CameraControlsActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Rotation.started += instance.OnRotation;
+                    @Rotation.performed += instance.OnRotation;
+                    @Rotation.canceled += instance.OnRotation;
+                }
+            }
+        }
+        public CameraControlsActions @CameraControls => new CameraControlsActions(this);
         public interface ICharacterControlsActions
         {
             void OnMove(InputAction.CallbackContext context);
@@ -410,6 +485,10 @@ namespace Script
             void OnShoot(InputAction.CallbackContext context);
             void OnAim(InputAction.CallbackContext context);
             void OnReload(InputAction.CallbackContext context);
+        }
+        public interface ICameraControlsActions
+        {
+            void OnRotation(InputAction.CallbackContext context);
         }
     }
 }
