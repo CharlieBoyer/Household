@@ -271,7 +271,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188557979}
   m_LocalRotation: {x: 0, y: 0.026176924, z: 0, w: 0.99965733}
-  m_LocalPosition: {x: 0.0036213293, y: 3.6979513, z: -2.9128125}
+  m_LocalPosition: {x: 0.0036213293, y: 3.6979513, z: 3.527188}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -712,7 +712,7 @@ GameObject:
   - component: {fileID: 1385355718}
   - component: {fileID: 1385355717}
   m_Layer: 0
-  m_Name: CM vcam1
+  m_Name: VCam 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -764,7 +764,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1385355716}
   m_LocalRotation: {x: 0, y: 0.026176924, z: 0, w: 0.99965733}
-  m_LocalPosition: {x: 0.0036213293, y: 3.6979513, z: -2.9128125}
+  m_LocalPosition: {x: 0.0036213293, y: 3.6979513, z: 3.527188}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -784,6 +784,7 @@ GameObject:
   - component: {fileID: 1549803527}
   - component: {fileID: 1549803526}
   - component: {fileID: 1549803525}
+  - component: {fileID: 1549803529}
   m_Layer: 0
   m_Name: Home
   m_TagString: Untagged
@@ -862,13 +863,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549803524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.252367, y: -9.364443, z: -11.644858}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.3, y: 5, z: -5.2}
+  m_LocalScale: {x: 10, y: 6, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1549803529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549803524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24da01b6a07b4384592c0e46a01dd0d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1686248639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,7 +1273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4615997251504915441, guid: 78355a5e7c558044ca3da23d9361237f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3
+      value: 3.4400005
       objectReference: {fileID: 0}
     - target: {fileID: 4615997251504915441, guid: 78355a5e7c558044ca3da23d9361237f, type: 3}
       propertyPath: m_LocalRotation.w
