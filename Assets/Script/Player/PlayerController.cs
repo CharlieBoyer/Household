@@ -7,46 +7,28 @@ namespace Script
 {
     public class PlayerController : MonoBehaviour
     {
+        [SerializeField] private float _inherentSpeedFactor;
+        [SerializeField] private float _inherentRotationFactor;
+        // [SerializeField] private float _smoothTime;
+
         private PlayerInput _inputs;
-        private CharacterController _controller;
         private Animator _animator;
+        private CharacterController _character;
+        private CameraController _camera;
 
-        private Vector2 _currentMovementInput;
-        private Vector3 _currentMovement;
-        private bool _isMovementPressed;
-
-        void OnMovementInput(InputAction.CallbackContext context)
-        {
-            _currentMovementInput = context.ReadValue<Vector2>();
-            Debug.Log(_currentMovementInput.y);
-            _currentMovement.x = _currentMovementInput.x;
-            _currentMovement.z = _currentMovementInput.y;
-            _isMovementPressed = _currentMovementInput.x != 0 || _currentMovementInput.y != 0;
-        }
-
-        void handleAnimation()
-        {
-            bool isDead = _animator.GetBool("isDead");
-            bool isShooting = _animator.GetBool("isShooting");
-
-            _animator.SetFloat("speed", _currentMovement.magnitude);
-        }
+        private Vector2 _rawInput;
+        private Vector3 _motion;
 
         void Awake()
         {
-            _inputs = new PlayerInput(); // Instanciating new inputs maps
-            _controller = GetComponent<CharacterController>();
+            _inputs = new PlayerInput();
             _animator = GetComponent<Animator>();
+            _character = GetComponent<CharacterController>();
+            _camera = GameObject.Find("MainCamera").GetComponent<CameraController>();
 
             _inputs.CharacterControls.Move.started += OnMovementInput;
             _inputs.CharacterControls.Move.canceled += OnMovementInput;
             _inputs.CharacterControls.Move.performed += OnMovementInput;
-        }
-
-        void Update()
-        {
-            handleAnimation();
-            _controller.Move(_currentMovement * Time.deltaTime);
         }
 
         void OnEnable()
@@ -57,6 +39,46 @@ namespace Script
         void OnDisable()
         {
             _inputs.CharacterControls.Disable();
+        }
+
+        void Update()
+        {
+            handleRotation();
+            handleAnimation();
+            _character.Move(_motion * _inherentSpeedFactor * Time.deltaTime);
+        }
+
+        void OnMovementInput(InputAction.CallbackContext context)
+        {
+            _rawInput = context.ReadValue<Vector2>();
+            _motion = new Vector3(_rawInput.x, 0, _rawInput.y);
+        }
+
+        private void handleRotation()
+        {
+            Vector3 positionToLookAt = new Vector3(_motion.x, 0.0f, _motion.z);
+            Quaternion currentRotationPos = transform.rotation;
+            Quaternion targetRotationPos;
+            Quaternion smoothRotation;
+
+            if (positionToLookAt != Vector3.zero)
+            {
+                currentRotationPos = transform.rotation;
+                targetRotationPos = Quaternion.LookRotation(positionToLookAt); // Produce log message when positionToLookAt == (0,0,0)
+                smoothRotation = Quaternion.Slerp(currentRotationPos, targetRotationPos, _inherentRotationFactor * Time.deltaTime);
+
+                transform.rotation = smoothRotation;
+                _camera.Rotate(smoothRotation);
+            }
+        }
+
+        private void handleAnimation()
+        {
+            bool isDead = _animator.GetBool("isDead");
+            bool isShooting = _animator.GetBool("isShooting");
+            float speed = _animator.GetFloat("speed");
+
+            _animator.SetFloat("speed", _motion.magnitude);
         }
     }
 }
