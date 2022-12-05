@@ -37,7 +37,7 @@ namespace Script
             }
         }
 
-        public void Rotate(Quaternion targetRotation)
+        public void FollowPlayerDirection(Quaternion targetRotation)
         {
             _activeCamera.transform.rotation = targetRotation;
         }

@@ -26,9 +26,6 @@ namespace Script
             _character = GetComponent<CharacterController>();
             _camera = GameObject.Find("MainCamera").GetComponent<CameraController>();
 
-            _inputs.CharacterControls.Move.started += OnMovementInput;
-            _inputs.CharacterControls.Move.canceled += OnMovementInput;
-            _inputs.CharacterControls.Move.performed += OnMovementInput;
         }
 
         void OnEnable()
@@ -43,6 +40,7 @@ namespace Script
 
         void Update()
         {
+            Input.GetButtonDown("");
             handleRotation();
             handleAnimation();
             _character.Move(_motion * _inherentSpeedFactor * Time.deltaTime);
@@ -68,7 +66,7 @@ namespace Script
                 smoothRotation = Quaternion.Slerp(currentRotationPos, targetRotationPos, _inherentRotationFactor * Time.deltaTime);
 
                 transform.rotation = smoothRotation;
-                _camera.Rotate(smoothRotation);
+                _camera.FollowPlayerDirection(smoothRotation);
             }
         }
 
@@ -79,6 +77,21 @@ namespace Script
             float speed = _animator.GetFloat("speed");
 
             _animator.SetFloat("speed", _motion.magnitude);
+        }
+
+        private void registerMovementsCallbacks(PlayerInput _inputs)
+        {
+            _inputs.CharacterControls.Move.started += OnMovementInput;
+            _inputs.CharacterControls.Move.canceled += OnMovementInput;
+            _inputs.CharacterControls.Move.performed += OnMovementInput;
+
+            _inputs.CharacterControls.Run.started += OnRunInput;
+            _inputs.CharacterControls.Run.canceled += OnRunInput;
+            _inputs.CharacterControls.Run.performed += OnRunInput;
+
+            _inputs.CharacterControls.Jump.started += OnJumpInput;
+            _inputs.CharacterControls.Jump.canceled += OnJumpInput;
+            _inputs.CharacterControls.Jump.performed += OnJumpInput;
         }
     }
 }
