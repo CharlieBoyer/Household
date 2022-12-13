@@ -9,7 +9,7 @@ namespace Script
     {
         [SerializeField] private float _inherentSpeedFactor;
         [SerializeField] private float _inherentRotationFactor;
-        // [SerializeField] private float _inherentRunSpeed;
+        [SerializeField] private float _inherentRunSpeed;
 
         private PlayerInput _inputs;
         private Animator _animator;
@@ -44,6 +44,10 @@ namespace Script
         {
             handleRotation();
             handleAnimation();
+
+            if (_isRunning) {
+                _inherentSpeedFactor = _inherentSpeedFactor * _inherentRunSpeed;
+            }
             _character.Move(_motion * _inherentSpeedFactor * Time.deltaTime);
         }
 
@@ -82,10 +86,6 @@ namespace Script
         {
             _rawInput = context.ReadValue<Vector2>();
             _motion = new Vector3(_rawInput.x, 0, _rawInput.y);
-
-            if (_isRunning) {
-                _motion = _motion * 2; // _inherentRunSpeed
-            }
         }
 
         private void OnRotationInput(InputAction.CallbackContext context)
@@ -104,7 +104,7 @@ namespace Script
                     _isRunning = true;
                 }
 
-                _inputs.CharacterControls.Move.Reset();
+                // _inputs.CharacterControls.Move.Reset();
             }
         }
 
