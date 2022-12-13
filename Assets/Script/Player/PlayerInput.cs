@@ -39,6 +39,15 @@ namespace Script
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Rotation"",
+                    ""type"": ""Value"",
+                    ""id"": ""70d9d1ce-a721-4b81-b2a5-4f7e127a1430"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Run"",
                     ""type"": ""Button"",
                     ""id"": ""dab1bd82-cf06-4e7a-89fa-da6a7315fb14"",
@@ -66,18 +75,18 @@ namespace Script
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Aim"",
+                    ""name"": ""Reload"",
                     ""type"": ""Button"",
-                    ""id"": ""b4983270-444e-4754-af62-cb74398629db"",
+                    ""id"": ""3460cbee-89d4-48fb-97da-0978e1da8b59"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Reload"",
+                    ""name"": ""Aim"",
                     ""type"": ""Button"",
-                    ""id"": ""3460cbee-89d4-48fb-97da-0978e1da8b59"",
+                    ""id"": ""b4983270-444e-4754-af62-cb74398629db"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -219,28 +228,6 @@ namespace Script
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bbac073f-1fce-4897-8885-2568290058ca"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": ""Hold"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Aim"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8d154f58-ce9d-4f8f-9c53-5042b6efb452"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": ""Hold"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Aim"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""693fde86-596a-4b92-a89d-b846b8baa8da"",
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
@@ -260,28 +247,11 @@ namespace Script
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""CameraControls"",
-            ""id"": ""32003ed4-67e3-49c3-9c6b-6df4cbf03501"",
-            ""actions"": [
-                {
-                    ""name"": ""Rotation"",
-                    ""type"": ""Value"",
-                    ""id"": ""92ad0f71-ea05-4ae0-8e5a-cf9388dcb95d"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                }
-            ],
-            ""bindings"": [
+                },
                 {
                     ""name"": """",
-                    ""id"": ""d548370d-609b-474d-8605-b789425d8835"",
-                    ""path"": ""<Joystick>/stick/right"",
+                    ""id"": ""f5850061-f2e6-4d09-a60d-c217d522fa9b"",
+                    ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -291,12 +261,34 @@ namespace Script
                 },
                 {
                     ""name"": """",
-                    ""id"": ""fb1953fc-b7c2-4752-b6e5-b678a75ad5a1"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""id"": ""7b0a8dda-6129-487c-ad11-819c93f74d4f"",
+                    ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bbac073f-1fce-4897-8885-2568290058ca"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8d154f58-ce9d-4f8f-9c53-5042b6efb452"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -308,14 +300,12 @@ namespace Script
             // CharacterControls
             m_CharacterControls = asset.FindActionMap("CharacterControls", throwIfNotFound: true);
             m_CharacterControls_Move = m_CharacterControls.FindAction("Move", throwIfNotFound: true);
+            m_CharacterControls_Rotation = m_CharacterControls.FindAction("Rotation", throwIfNotFound: true);
             m_CharacterControls_Run = m_CharacterControls.FindAction("Run", throwIfNotFound: true);
             m_CharacterControls_Jump = m_CharacterControls.FindAction("Jump", throwIfNotFound: true);
             m_CharacterControls_Shoot = m_CharacterControls.FindAction("Shoot", throwIfNotFound: true);
-            m_CharacterControls_Aim = m_CharacterControls.FindAction("Aim", throwIfNotFound: true);
             m_CharacterControls_Reload = m_CharacterControls.FindAction("Reload", throwIfNotFound: true);
-            // CameraControls
-            m_CameraControls = asset.FindActionMap("CameraControls", throwIfNotFound: true);
-            m_CameraControls_Rotation = m_CameraControls.FindAction("Rotation", throwIfNotFound: true);
+            m_CharacterControls_Aim = m_CharacterControls.FindAction("Aim", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -376,21 +366,23 @@ namespace Script
         private readonly InputActionMap m_CharacterControls;
         private ICharacterControlsActions m_CharacterControlsActionsCallbackInterface;
         private readonly InputAction m_CharacterControls_Move;
+        private readonly InputAction m_CharacterControls_Rotation;
         private readonly InputAction m_CharacterControls_Run;
         private readonly InputAction m_CharacterControls_Jump;
         private readonly InputAction m_CharacterControls_Shoot;
-        private readonly InputAction m_CharacterControls_Aim;
         private readonly InputAction m_CharacterControls_Reload;
+        private readonly InputAction m_CharacterControls_Aim;
         public struct CharacterControlsActions
         {
             private @PlayerInput m_Wrapper;
             public CharacterControlsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_CharacterControls_Move;
+            public InputAction @Rotation => m_Wrapper.m_CharacterControls_Rotation;
             public InputAction @Run => m_Wrapper.m_CharacterControls_Run;
             public InputAction @Jump => m_Wrapper.m_CharacterControls_Jump;
             public InputAction @Shoot => m_Wrapper.m_CharacterControls_Shoot;
-            public InputAction @Aim => m_Wrapper.m_CharacterControls_Aim;
             public InputAction @Reload => m_Wrapper.m_CharacterControls_Reload;
+            public InputAction @Aim => m_Wrapper.m_CharacterControls_Aim;
             public InputActionMap Get() { return m_Wrapper.m_CharacterControls; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -403,6 +395,9 @@ namespace Script
                     @Move.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnMove;
                     @Move.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnMove;
                     @Move.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnMove;
+                    @Rotation.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnRotation;
+                    @Rotation.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnRotation;
+                    @Rotation.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnRotation;
                     @Run.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnRun;
                     @Run.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnRun;
                     @Run.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnRun;
@@ -412,12 +407,12 @@ namespace Script
                     @Shoot.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnShoot;
                     @Shoot.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnShoot;
                     @Shoot.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnShoot;
-                    @Aim.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnAim;
-                    @Aim.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnAim;
-                    @Aim.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnAim;
                     @Reload.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnReload;
                     @Reload.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnReload;
                     @Reload.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnReload;
+                    @Aim.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnAim;
+                    @Aim.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnAim;
+                    @Aim.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnAim;
                 }
                 m_Wrapper.m_CharacterControlsActionsCallbackInterface = instance;
                 if (instance != null)
@@ -425,6 +420,9 @@ namespace Script
                     @Move.started += instance.OnMove;
                     @Move.performed += instance.OnMove;
                     @Move.canceled += instance.OnMove;
+                    @Rotation.started += instance.OnRotation;
+                    @Rotation.performed += instance.OnRotation;
+                    @Rotation.canceled += instance.OnRotation;
                     @Run.started += instance.OnRun;
                     @Run.performed += instance.OnRun;
                     @Run.canceled += instance.OnRun;
@@ -434,61 +432,25 @@ namespace Script
                     @Shoot.started += instance.OnShoot;
                     @Shoot.performed += instance.OnShoot;
                     @Shoot.canceled += instance.OnShoot;
-                    @Aim.started += instance.OnAim;
-                    @Aim.performed += instance.OnAim;
-                    @Aim.canceled += instance.OnAim;
                     @Reload.started += instance.OnReload;
                     @Reload.performed += instance.OnReload;
                     @Reload.canceled += instance.OnReload;
+                    @Aim.started += instance.OnAim;
+                    @Aim.performed += instance.OnAim;
+                    @Aim.canceled += instance.OnAim;
                 }
             }
         }
         public CharacterControlsActions @CharacterControls => new CharacterControlsActions(this);
-
-        // CameraControls
-        private readonly InputActionMap m_CameraControls;
-        private ICameraControlsActions m_CameraControlsActionsCallbackInterface;
-        private readonly InputAction m_CameraControls_Rotation;
-        public struct CameraControlsActions
-        {
-            private @PlayerInput m_Wrapper;
-            public CameraControlsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Rotation => m_Wrapper.m_CameraControls_Rotation;
-            public InputActionMap Get() { return m_Wrapper.m_CameraControls; }
-            public void Enable() { Get().Enable(); }
-            public void Disable() { Get().Disable(); }
-            public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(CameraControlsActions set) { return set.Get(); }
-            public void SetCallbacks(ICameraControlsActions instance)
-            {
-                if (m_Wrapper.m_CameraControlsActionsCallbackInterface != null)
-                {
-                    @Rotation.started -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnRotation;
-                    @Rotation.performed -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnRotation;
-                    @Rotation.canceled -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnRotation;
-                }
-                m_Wrapper.m_CameraControlsActionsCallbackInterface = instance;
-                if (instance != null)
-                {
-                    @Rotation.started += instance.OnRotation;
-                    @Rotation.performed += instance.OnRotation;
-                    @Rotation.canceled += instance.OnRotation;
-                }
-            }
-        }
-        public CameraControlsActions @CameraControls => new CameraControlsActions(this);
         public interface ICharacterControlsActions
         {
             void OnMove(InputAction.CallbackContext context);
+            void OnRotation(InputAction.CallbackContext context);
             void OnRun(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
             void OnShoot(InputAction.CallbackContext context);
-            void OnAim(InputAction.CallbackContext context);
             void OnReload(InputAction.CallbackContext context);
-        }
-        public interface ICameraControlsActions
-        {
-            void OnRotation(InputAction.CallbackContext context);
+            void OnAim(InputAction.CallbackContext context);
         }
     }
 }
