@@ -12,13 +12,11 @@ namespace Script
 
         void Update()
         {
+            _controller.HandleJump();
             _controller.HandleMovement();
-            _controller.HandleAnimation();
+            _controller.HandleRotation();
             _controller.HandleAnimation();
             
-            if (Input.GetButtonDown("Jump")) {
-                _controller.Jump();
-            }
         }
     }
 }
