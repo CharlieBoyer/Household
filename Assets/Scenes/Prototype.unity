@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1252,12 +1252,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 532986867803984634, guid: 78355a5e7c558044ca3da23d9361237f, type: 3}
+      propertyPath: _gravity
+      value: 9.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 532986867803984634, guid: 78355a5e7c558044ca3da23d9361237f, type: 3}
       propertyPath: _lerpTime
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 532986867803984634, guid: 78355a5e7c558044ca3da23d9361237f, type: 3}
+      propertyPath: _inherentJumpForce
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 768728738725608767, guid: 78355a5e7c558044ca3da23d9361237f, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3581401535066362548, guid: 78355a5e7c558044ca3da23d9361237f, type: 3}
+      propertyPath: m_Center.y
+      value: 0.89
       objectReference: {fileID: 0}
     - target: {fileID: 4615997251504915441, guid: 78355a5e7c558044ca3da23d9361237f, type: 3}
       propertyPath: m_RootOrder
