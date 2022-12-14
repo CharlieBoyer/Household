@@ -27,7 +27,7 @@ namespace Script
             _character = GetComponent<CharacterController>();
             _camera = GameObject.Find("MainCamera").GetComponent<CameraController>();
 
-            registerInputsCallbacks(_inputs);
+            RegisterInputsCallbacks(_inputs);
         }
 
         void OnEnable()
@@ -51,31 +51,31 @@ namespace Script
             _character.Move(_motion * _inherentSpeedFactor * Time.deltaTime);
         }
 
-        private void registerInputsCallbacks(PlayerInput _inputs)
+        private void RegisterInputsCallbacks(PlayerInput inputs)
         {
-            _inputs.CharacterControls.Move.started += OnMovementInput;
-            _inputs.CharacterControls.Move.canceled += OnMovementInput;
-            _inputs.CharacterControls.Move.performed += OnMovementInput;
+            inputs.CharacterControls.Move.started += OnMovementInput;
+            inputs.CharacterControls.Move.canceled += OnMovementInput;
+            inputs.CharacterControls.Move.performed += OnMovementInput;
 
-            _inputs.CharacterControls.Rotation.started += OnRotationInput;
-            _inputs.CharacterControls.Rotation.canceled += OnRotationInput;
-            _inputs.CharacterControls.Rotation.performed += OnRotationInput;
+            inputs.CharacterControls.Rotation.started += OnRotationInput;
+            inputs.CharacterControls.Rotation.canceled += OnRotationInput;
+            inputs.CharacterControls.Rotation.performed += OnRotationInput;
 
-            _inputs.CharacterControls.Run.started += OnRunInput;
-            _inputs.CharacterControls.Run.canceled += OnRunInput;
-            _inputs.CharacterControls.Run.performed += OnRunInput;
+            inputs.CharacterControls.Run.started += OnRunInput;
+            inputs.CharacterControls.Run.canceled += OnRunInput;
+            inputs.CharacterControls.Run.performed += OnRunInput;
 
-            _inputs.CharacterControls.Jump.started += OnJumpInput;
-            _inputs.CharacterControls.Jump.canceled += OnJumpInput;
-            _inputs.CharacterControls.Jump.performed += OnJumpInput;
+            inputs.CharacterControls.Jump.started += OnJumpInput;
+            inputs.CharacterControls.Jump.canceled += OnJumpInput;
+            inputs.CharacterControls.Jump.performed += OnJumpInput;
 
-            _inputs.CharacterControls.Shoot.started += OnShootInput;
-            _inputs.CharacterControls.Shoot.canceled += OnShootInput;
-            _inputs.CharacterControls.Shoot.performed += OnShootInput;
+            inputs.CharacterControls.Shoot.started += OnShootInput;
+            inputs.CharacterControls.Shoot.canceled += OnShootInput;
+            inputs.CharacterControls.Shoot.performed += OnShootInput;
 
-            _inputs.CharacterControls.Reload.started += OnReloadInput;
-            _inputs.CharacterControls.Reload.canceled += OnReloadInput;
-            _inputs.CharacterControls.Reload.performed += OnReloadInput;
+            inputs.CharacterControls.Reload.started += OnReloadInput;
+            inputs.CharacterControls.Reload.canceled += OnReloadInput;
+            inputs.CharacterControls.Reload.performed += OnReloadInput;
 
             // _inputs.CharacterControls.Aim.started += OnAimInput;
             // _inputs.CharacterControls.Aim.canceled += OnAimInput;
