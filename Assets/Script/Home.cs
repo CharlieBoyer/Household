@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Home : MonoBehaviour
+namespace Script
 {
-    private MeshRenderer _meshRenderer;
-
-    void Awake()
+    public class Home : MonoBehaviour
     {
-        _meshRenderer = GetComponent<MeshRenderer>();
-        _meshRenderer.material.color = Color.cyan;
+        private MeshRenderer _meshRenderer;
+
+        void Awake()
+        {
+            _meshRenderer = GetComponent<MeshRenderer>();
+            _meshRenderer.material.color = Color.cyan;
+        }
     }
 }
