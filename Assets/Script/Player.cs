@@ -5,19 +5,23 @@ namespace Script
     public class Player : MonoBehaviour
     {
         private PlayerController _controller;
-        void Awake()
-        {
+        private void Awake() {
             _controller = GetComponent<PlayerController>();
         }
 
-        void Update()
+        private void Start() {
+            Input.ResetInputAxes();
+        }
+
+        private void Update()
         {
-            _controller.HandleJump();
-            _controller.HandleMovement();
-            _controller.HandleRotation();
+            Move();
+        }
+
+        private void Move() {
             _controller.HandleAnimation();
-            
+            _controller.HandleRotation();
+            _controller.HandleMovement();
         }
     }
 }
-
