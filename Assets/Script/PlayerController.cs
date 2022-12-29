@@ -4,19 +4,20 @@ namespace Script
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private float _inherentSpeedFactor;
-        [SerializeField] private float _inherentRunSpeedFactor;
-        [SerializeField] private float _inherentRotationFactor;
-        [SerializeField] private float _inherentJumpForce;
-        [SerializeField] float _gravity;
+        [SerializeField] private float _inherentSpeed;
+        [SerializeField] private float _inherentRunSpeed;
+        // [SerializeField] private float _inherentRotationFactor;
+        // [SerializeField] private float _inherentJumpForce;
+        // [SerializeField] private float _gravity;
 
         private Animator _animator;
         private CharacterController _character;
         private CameraController _camera;
-        private Collider _groundCollider;
-        
-        private Vector3 _motionVector;
-        private Vector3 _jumpVector;
+
+        private Vector3 _motionForward;
+        private Vector3 _motionLateral;
+        private Vector3 _targetAngle;
+        private Quaternion _targetRotation;
 
         void Awake()
         {
@@ -25,59 +26,59 @@ namespace Script
             _camera = GameObject.Find("MainCamera").GetComponent<CameraController>();
         }
 
+        private void Update()
+        {
+            // HandleRotation();
+            // HandleMovement();
+            // HandleAnimation();
+        }
+
         public void HandleMovement()
         {
-            _motionVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            
-            if (_motionVector.x == 0 && _motionVector.z == 0) { // If no motion, do nothing
-                return;
-            }
+            float inputForward = Input.GetAxis("Vertical") * _inherentSpeed;
+            float inputLateral = Input.GetAxis("Horizontal") * _inherentSpeed;
+
             if (Input.GetKey(KeyCode.LeftShift)) {
-                _motionVector *= _inherentRunSpeedFactor;
+                inputForward *= _inherentRunSpeed;
+                inputLateral *= _inherentRunSpeed;
             }
-            
-            _character.Move(_motionVector * (_inherentSpeedFactor * Time.deltaTime));
+
+            _motionForward = transform.forward * inputForward;
+            _motionLateral = transform.right * inputLateral;
+
+            _character.Move(_motionForward * Time.deltaTime);
+            _character.Move(_motionLateral * Time.deltaTime);
         }
-        
+
         public void HandleRotation()
         {
-            Vector3 positionToLookAt = new Vector3(_motionVector.x, 0.0f, _motionVector.z);
-            Quaternion currentRotationPos;
-            Quaternion targetRotationPos;
-            Quaternion smoothRotation;
+            float inputX = Input.GetAxis("Mouse X") * _camera.inherentSensitivity * _camera.sensitivityX * Time.deltaTime;
 
-            if (positionToLookAt != Vector3.zero) // If view angle do not differ from last frame
-            {
-                currentRotationPos = transform.rotation;
-                targetRotationPos = Quaternion.LookRotation(positionToLookAt); // Produce log message when positionToLookAt == (0,0,0)
-                smoothRotation = Quaternion.Slerp(currentRotationPos, targetRotationPos, _inherentRotationFactor * Time.deltaTime);
-
-                transform.rotation = smoothRotation;
-                _camera.FollowPlayerDirection(smoothRotation);
-            }
+            _targetAngle += new Vector3(0, inputX, 0);
+            _targetRotation.eulerAngles = _targetAngle;
+            transform.rotation = _targetRotation;
         }
-        
+
         public void HandleAnimation()
         {
-            _animator.SetFloat("Speed", _motionVector.magnitude);
-            _animator.SetFloat("Jump", _jumpVector.magnitude);
+            _animator.SetFloat("Speed", _motionForward.magnitude);
+            // _animator.SetFloat("Jump", _jumpVector.magnitude);
         }
 
-        public void HandleJump()
+        /* public void HandleJump()
         {
-            if (_character.isGrounded)
-            {
+            if (_character.isGrounded) {
                 Debug.Log("isGrounded : " + _character.isGrounded);
-                _jumpVector = Vector3.zero;
+                _motionForward.y = 0;
 
                 if (Input.GetButtonDown("Jump")) {
-                    _jumpVector = new Vector3(0, _inherentJumpForce, 0);
+                    _motionForward.y = _inherentJumpForce;
                 }
-
-                _jumpVector.y -= _gravity * Time.deltaTime;
-                _character.Move(_jumpVector * Time.deltaTime);
             }
-        }
+            else {
+                _motionForward.y -= _gravity * Time.deltaTime;
+            }
+        } */
 
         /* private void Shoot()
         {
@@ -88,7 +89,7 @@ namespace Script
         {
             Debug.Log("Reload Triggered");
         } */
-        
+
         /* private void Turn()
         {
 
