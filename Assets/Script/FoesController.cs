@@ -4,18 +4,18 @@ namespace Script
 {
     public class FoesController : MonoBehaviour
     {
-        public Color prototypeColor = Color.red;
-        private MeshRenderer _prototypeMeshRenderer;
+        private BaseColor _prototypeColor;
+        private MeshRenderer _mesh;
 
-        void Awake()
+        private void Awake()
         {
-            _prototypeMeshRenderer = GetComponent<MeshRenderer>();
-            _prototypeMeshRenderer.material.color = prototypeColor;
+            _prototypeColor = GetComponent<BaseColor>();
+            _mesh = GetComponent<MeshRenderer>();
         }
 
-        void Update()
+        private void Start()
         {
-
+            _mesh.material.color = _prototypeColor.baseColor;
         }
     }
 }

@@ -1,15 +1,22 @@
+using System;
 using UnityEngine;
 
 namespace Script
 {
     public class Home : MonoBehaviour
     {
-        private MeshRenderer _meshRenderer;
+        private BaseColor _prototypeColor;
+        private MeshRenderer _mesh;
 
-        void Awake()
+        private void Awake()
         {
-            _meshRenderer = GetComponent<MeshRenderer>();
-            _meshRenderer.material.color = Color.cyan;
+            _prototypeColor = GetComponent<BaseColor>();
+            _mesh = GetComponent<MeshRenderer>();
+        }
+
+        private void Start()
+        {
+            _mesh.material.color = _prototypeColor.baseColor;
         }
     }
 }

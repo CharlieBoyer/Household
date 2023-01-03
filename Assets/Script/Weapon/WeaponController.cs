@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,7 +11,7 @@ namespace Script.Weapon
 
         public int pelletsNumber = 6;
         public float spreadAngle = 40f;
-        private float range = Mathf.Infinity;
+        private float range = 100f;
 
         private void Awake()
         {
@@ -45,7 +46,7 @@ namespace Script.Weapon
             if (Physics.Raycast(_camera.transform.position, direction, out pelletHit, range))
             {
                 target = pelletHit.transform.gameObject;
-                target.GetComponent<MeshRenderer>().material.color = Color.yellow;
+                StartCoroutine(changeTargetColor(target));
                 Debug.DrawLine(_camera.transform.position, pelletHit.point, Color.green, 3f);
             }
             else
@@ -54,9 +55,23 @@ namespace Script.Weapon
             }
         }
 
-        private void changeTargetColor(GameObject target)
+        private IEnumerator changeTargetColor(GameObject target)
         {
-            target.GetComponent<MeshRenderer>().material.color = Color.yellow;
+            MeshRenderer targetMesh = target.GetComponent<MeshRenderer>();
+            BaseColor colorProperty = target.GetComponent<BaseColor>();
+            bool hasBaseColor = colorProperty != null ? true : false;
+
+            targetMesh.material.color = Color.yellow;
+            yield return new WaitForSecondsRealtime(2);
+
+            if (hasBaseColor)
+            {
+                targetMesh.material.color = colorProperty.baseColor;
+            }
+            else
+            {
+                targetMesh.material.color = Color.grey;
+            }
         }
     }
 }

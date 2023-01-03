@@ -28,6 +28,7 @@ namespace Script
 
         private void Update()
         {
+            /* Delegate movement to Player class */
             // HandleRotation();
             // HandleMovement();
             // HandleAnimation();
