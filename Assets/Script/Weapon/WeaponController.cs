@@ -9,8 +9,9 @@ namespace Script.Weapon
     {
         private GameObject _camera;
 
+        [Range(0f, 1f)] public float horizontalSpread = 0.4f;
+        [Range(0f, 1f)] public float verticalSpread = 0.2f;
         public int pelletsNumber = 6;
-        public float spreadAngle = 40f;
         private float range = 100f;
 
         private void Awake()
@@ -36,11 +37,9 @@ namespace Script.Weapon
 
             Vector3 direction = _camera.transform.forward; // your initial aim.
             Vector3 spread = Vector3.zero;
-            spread += _camera.transform.up * Random.Range(-1f, 1f);    // add random up or down (because random can get negative too)
-            spread += _camera.transform.right * Random.Range(-1f, 1f); // add random left or right
+            spread += _camera.transform.up * Random.Range(-verticalSpread, verticalSpread);
+            spread += _camera.transform.right * Random.Range(-horizontalSpread, horizontalSpread);
 
-            // Using random up and right values will lead to a square spray pattern. If we normalize this vector, we'll get the spread direction, but as a circle.
-            // Since the radius is always 1 then (after normalization), we need another random call.
             direction += spread.normalized * Random.Range(0f, 0.2f);
 
             if (Physics.Raycast(_camera.transform.position, direction, out pelletHit, range))
