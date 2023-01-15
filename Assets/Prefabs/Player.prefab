@@ -2038,7 +2038,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4565884009001823619, guid: f69b99f99de0863419616791084b87ec, type: 3}
+  - {fileID: 2100000, guid: 8ffc5a493b1fb0942b42f71c2e878d0d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2501,9 +2501,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f841f51f6c88ea499a6706550581744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizontalSpread: 0.4
+  verticalSpread: 0.2
   pelletsNumber: 6
-  spreadAngle: 40
-  range: 1000
 --- !u!1 &7559686969045195915
 GameObject:
   m_ObjectHideFlags: 0
@@ -2913,7 +2913,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.25
   far clip plane: 30
   field of view: 50
   orthographic: 0
