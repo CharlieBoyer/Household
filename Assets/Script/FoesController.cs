@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,7 +9,7 @@ namespace Script
         public Transform navGoal;
         private NavMeshAgent _navAgent;
 
-        [SerializeField] private int _speed;
+        public int speed;
 
         private void Awake()
         {
@@ -17,8 +18,9 @@ namespace Script
 
         private void Start()
         {
-            _navAgent.speed = _speed;
-            _navAgent.destination = navGoal.position;
+            _navAgent.speed = speed;
+            _navAgent.destination = GameObject.Find("Home").transform.position;
         }
+
     }
 }
