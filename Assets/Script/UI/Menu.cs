@@ -1,17 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Menu : MonoBehaviour
+namespace Script.UI
 {
-    public void Play()
+    public class Menu : MonoBehaviour
     {
-        SceneManager.LoadScene("Game", LoadSceneMode.Single);
-    }
+        public void Play()
+        {
+            SceneManager.LoadScene("Game", LoadSceneMode.Single);
+        }
 
-    public void Exit()
-    {
-        Application.Quit();
+        public void Exit()
+        {
+            Application.Quit();
+        }
+
+        public void ReturnToMainMenu()
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        }
     }
 }
+

@@ -44,7 +44,7 @@ namespace Script
         {
             if (cursorLock == true) {
                 Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
+                // Cursor.visible = false;
             }
         }
 

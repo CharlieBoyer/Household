@@ -2945,8 +2945,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7575bb4732822d4e92a8e296ec84629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorLock: 1
-  inherentSensitivity: 0
+  cursorLock: 0
+  inherentSensitivity: 20
   sensitivityY: 2
   sensitivityX: 1.5
   maxAngle: 50
