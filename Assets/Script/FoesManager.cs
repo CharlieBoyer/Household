@@ -14,7 +14,7 @@ namespace Script
         private Home _home;
         private bool _gameOver;
 
-        public static readonly float _intervalTime = 5f;
+        private static readonly float _intervalTime = 4f;
         private readonly WaitForSeconds _spawnInterval = new WaitForSeconds(_intervalTime);
 
         public int foeSpeed;
@@ -43,7 +43,7 @@ namespace Script
 
             while (!_gameOver)
             {
-                int side = Random.Range(0, 3);
+                int side = Random.Range(0, 4);
 
                 switch (side)
                 {

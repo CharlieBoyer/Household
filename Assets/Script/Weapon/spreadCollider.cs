@@ -5,16 +5,32 @@ namespace Script.Weapon
     public class spreadCollider : MonoBehaviour
     {
         [HideInInspector] public bool triggered;
-        [HideInInspector] public Collider foe;
+        [HideInInspector] public GameObject foe;
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Foe"))
             {
                 triggered = true;
-                foe = other;
+                foe = other.gameObject;
             }
+            else
+            {
+                triggered = false;
+            }
+        }
 
-            triggered = false;
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.gameObject.CompareTag("Foe"))
+            {
+                triggered = true;
+                foe = other.gameObject;
+            }
+            else
+            {
+                triggered = false;
+            }
         }
     }
 }

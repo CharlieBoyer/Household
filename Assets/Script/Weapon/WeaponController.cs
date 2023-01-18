@@ -25,20 +25,15 @@ namespace Script.Weapon
 
         public void Update()
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && _spreadCollider.triggered)
             {
-                ShootClassic(); // ShootRays();
+                Debug.Log("Hit!");
+                _muzzleFlash.Play();
+                Destroy(_spreadCollider.foe);
             }
         }
 
-        private void ShootClassic()
-        {
-            _muzzleFlash.Play();
-            if (_spreadCollider.triggered)
-            {
-                Destroy(_spreadCollider.foe.gameObject);
-            }
-        }
+
 
         private void ShootRays()
         {
