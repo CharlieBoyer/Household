@@ -18,8 +18,9 @@ namespace Script.UI
         public void ReturnToMainMenu()
         {
             Time.timeScale = 1;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
     }
 }
-

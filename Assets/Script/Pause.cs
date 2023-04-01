@@ -26,6 +26,7 @@ namespace Script
                 _hud.enabled = false;
                 _runtimeMenu.enabled = true;
                 Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
             }
             else if (Input.GetButtonDown("Cancel") && _isPaused)
             {
@@ -35,8 +36,10 @@ namespace Script
                 _hud.enabled = true;
                 _runtimeMenu.enabled = false;
                 Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                
+                Application.Quit();
             }
         }
     }
 }
-
