@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: f64b93beafdb08740be37116f1c2f2bf
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - A-TTF Shin Go Pro
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 95b54db05914d6a4f8ba380367c5abc2, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

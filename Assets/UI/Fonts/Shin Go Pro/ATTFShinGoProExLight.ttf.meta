@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: 5fe72242eaa696347a3dbc8c895c2b27
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - A-TTF Shin Go Pro
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: d71880dbc37ebe2469e3c0d9207c7a6b, type: 3}
+  - {fileID: 12800000, guid: abaadd19b5c172f45b1c896eb5936cfc, type: 3}
+  - {fileID: 12800000, guid: 699133b244bad854bb2605c9f0898d35, type: 3}
+  - {fileID: 12800000, guid: f64b93beafdb08740be37116f1c2f2bf, type: 3}
+  - {fileID: 12800000, guid: 95b54db05914d6a4f8ba380367c5abc2, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
