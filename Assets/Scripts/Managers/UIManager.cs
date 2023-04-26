@@ -14,6 +14,7 @@ namespace Managers
     {
         [Header("Sub-Components")]
         [SerializeField] private CycleMeter _cycleMeter;
+        [SerializeField] private HomeStatus _homeStatus;
         
         [Header("General UI")]
         public TMP_Text gameInfoTextBox;
@@ -126,5 +127,6 @@ namespace Managers
             _cycleComplete = false;
         }
         
+        // HomeStatus
     }
 }
