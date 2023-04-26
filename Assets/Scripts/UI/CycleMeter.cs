@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ using Managers;
 
 namespace UI
 {
-    public class CycleMeter : MonoBehaviourSingleton<CycleMeter>
+    public class CycleMeter : MonoBehaviour
     {
         [Header("UI Fields")]
         public Slider slider;
@@ -40,7 +41,7 @@ namespace UI
         // Cycle Meter "states"
         public void SetComplete()
         {
-            Instance.StartCoroutine(FadeComplete());
+            StartCoroutine(FadeComplete());
         }
 
         public void SetSun()
@@ -73,7 +74,7 @@ namespace UI
 
         // Fade Coroutine
         private void FadeOutIcon() {
-            Instance.StartCoroutine(Fade(1, 0));
+            StartCoroutine(Fade(1, 0));
         }
 
         private void FadeInIcon()
@@ -81,7 +82,7 @@ namespace UI
             if (icon.enabled == false)
                 icon.enabled = true;
             
-            Instance.StartCoroutine(Fade(0, 1));
+            StartCoroutine(Fade(0, 1));
         }
 
         private IEnumerator FadeComplete()

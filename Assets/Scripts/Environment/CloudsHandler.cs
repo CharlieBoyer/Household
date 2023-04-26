@@ -36,16 +36,16 @@ namespace Environment
             switch (weather)
             {
                 case Weather.Clear:
-                    SetCloudState(0, 1, 0, 20);
+                    SetCloudState(0, 1, 0, 10);
                     break;
                 case Weather.MildlyCloudy:
-                    SetCloudState(0.5f, 15, -20, 30);
+                    SetCloudState(0.5f, 5, -20, 10);
                     break;
                 case Weather.Cloudy:
-                    SetCloudState(60, 20, -60, 35);
+                    SetCloudState(60, 10, -60, 5);
                     break;
                 case Weather.Rainy:
-                    SetCloudState(100, 10, -100, 5);
+                    SetCloudState(100, 7, -100, 5);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(weather), weather, "Unable to UpdateClouds: invalid Weather state");
