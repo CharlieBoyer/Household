@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using Internal;
-using UnityEngine.Serialization;
+using Managers;
 
 namespace UI
 {
@@ -24,9 +24,7 @@ namespace UI
         public Color defaultBarColor;
         public Color fillbarDayColor;
         public Color fillbarNightColor;
-        public Color sunIconColor;
-        public Color moonIconColor;
-        
+
         // Cached animator properties
         private readonly int _day = Animator.StringToHash("day");
         private readonly int _night = Animator.StringToHash("night");
@@ -42,15 +40,12 @@ namespace UI
         // Cycle Meter "states"
         public void SetComplete()
         {
-            FadeOutIcon();
-            sliderFill.enabled = false;
-            sliderBar.color = defaultBarColor;
+            Instance.StartCoroutine(FadeComplete());
         }
 
         public void SetSun()
         {
             iconAnimator.SetTrigger(_day);
-            icon.color = sunIconColor;
             sliderFill.enabled = true;
             sliderFill.color = fillbarDayColor;
             sliderBar.color = defaultBarColor;
@@ -61,14 +56,14 @@ namespace UI
         public void SetMoon()
         {
             iconAnimator.SetTrigger(_night);
-            icon.color = moonIconColor;
             sliderFill.enabled = true;
             sliderFill.color = fillbarNightColor;
             sliderBar.color = defaultBarColor;
             SetStars(true);
             FadeInIcon();
         }
-
+        
+        // Enables/Disable stars for moon icon 
         private void SetStars(bool activate)
         {
             foreach (Image star in moonStars) {
@@ -87,6 +82,15 @@ namespace UI
                 icon.enabled = true;
             
             Instance.StartCoroutine(Fade(0, 1));
+        }
+
+        private IEnumerator FadeComplete()
+        {
+            SetStars(false);
+            yield return Fade(1, 0);
+            
+            sliderFill.enabled = false;
+            sliderBar.color = defaultBarColor;
         }
 
         private IEnumerator Fade(float a, float b)
