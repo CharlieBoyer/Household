@@ -6,15 +6,13 @@ using TMPro;
 using Internal;
 using UI;
 
-// ReSharper disable InconsistentNaming
-
 namespace Managers
 {
     public class UIManager : MonoBehaviourSingleton<UIManager>
     {
         [Header("Sub-Components")]
-        [SerializeField] private CycleMeter _cycleMeter;
-        [SerializeField] private HomeStatus _homeStatus;
+        public CycleMeter cycleMeter;
+        public HomeStatus homeStatus;
         
         [Header("General UI")]
         public TMP_Text gameInfoTextBox;
@@ -34,7 +32,7 @@ namespace Managers
             _cycleComplete = true;
         }
         
-        //TODO: [EXPERIMENTAL] Test buttons
+        //TODO: [DEV ONLY] Test buttons
         public static void EnableTestsButttons(bool state) {
             GameObject.Find("StartDay").GetComponent<Button>().interactable = state;
             GameObject.Find("StartNight").GetComponent<Button>().interactable = state;
@@ -102,12 +100,12 @@ namespace Managers
             if (cycleProgress >= 1)
             {
                 _cycleComplete = true;
-                _cycleMeter.SetComplete();
+                cycleMeter.SetComplete();
                 UpdateGameInfo("Cycle Complete");
             }
             else
             {
-                _cycleMeter.slider.value = cycleProgress;
+                cycleMeter.slider.value = cycleProgress;
                 if (_displayOnce) {
                     UpdateGameInfo((state == TimeManager.CyleState.Day) ? "Day Time" : "Night Time");
                     _displayOnce = false;
@@ -118,9 +116,9 @@ namespace Managers
         private void ResetCycleUI(TimeManager.CyleState state)
         {
             if (state == TimeManager.CyleState.Day)
-                _cycleMeter.SetSun();
+                cycleMeter.SetSun();
             else
-                _cycleMeter.SetMoon();
+                cycleMeter.SetMoon();
         
             _gameInfo = "";
             _displayOnce = true;

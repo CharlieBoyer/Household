@@ -39,10 +39,10 @@ namespace UI
             // TODO <!>
         }
 
-        public void IncreaseMaxGaugeSize(int additionalChunks)
+        public void IncreaseMaxGaugeSize(float additionalChunks)
         {
             Vector2 currentSize = _gaugeRect.sizeDelta;
-            int additionalSize = additionalChunks * GaugeChunkSize;
+            int additionalSize = Mathf.RoundToInt(additionalChunks * GaugeChunkSize);
             int targetSize = Mathf.RoundToInt(currentSize.x + additionalSize);
             
             if (Math.Abs(gaugeMaxSize - currentSize.x) == 0)

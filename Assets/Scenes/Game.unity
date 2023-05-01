@@ -2680,10 +2680,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 961739753}
+  - component: {fileID: 961739754}
   - component: {fileID: 961739752}
   - component: {fileID: 961739751}
   - component: {fileID: 961739750}
-  - component: {fileID: 961739754}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -2802,7 +2802,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7575bb4732822d4e92a8e296ec84629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorLock: 0
+  cursorLock: 1
+  cursorVisible: 1
   inherentSensitivity: 150
   sensitivityY: 1
   sensitivityX: 1
@@ -3354,14 +3355,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1691220737}
-        m_TargetAssemblyTypeName: UI.HomeStatus, Assembly-CSharp
-        m_MethodName: IncreaseGaugeSize
+      - m_Target: {fileID: 1875583738}
+        m_TargetAssemblyTypeName: Managers.HomeManager, Assembly-CSharp
+        m_MethodName: Repair
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 20
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3488,14 +3489,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1691220737}
-        m_TargetAssemblyTypeName: UI.HomeStatus, Assembly-CSharp
-        m_MethodName: IncreaseGaugeSize
+      - m_Target: {fileID: 1875583738}
+        m_TargetAssemblyTypeName: Managers.HomeManager, Assembly-CSharp
+        m_MethodName: TakeDamage
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 20
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4805,14 +4806,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1691220737}
-        m_TargetAssemblyTypeName: UI.HomeStatus, Assembly-CSharp
-        m_MethodName: IncreaseGaugeSize
+      - m_Target: {fileID: 1875583738}
+        m_TargetAssemblyTypeName: Managers.HomeManager, Assembly-CSharp
+        m_MethodName: IncreaseMaxDurability
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 25
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5872,6 +5873,7 @@ GameObject:
   - component: {fileID: 1875583736}
   - component: {fileID: 1875583735}
   - component: {fileID: 1875583734}
+  - component: {fileID: 1875583738}
   m_Layer: 0
   m_Name: Home
   m_TagString: Untagged
@@ -5957,6 +5959,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -20, z: 0}
+--- !u!114 &1875583738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875583733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e049e3cb29464e545afa5e87063a70c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialMaxDurability: 100
 --- !u!1 &1927641806
 GameObject:
   m_ObjectHideFlags: 0
@@ -6158,12 +6173,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5874df48e9df6ba44ac93281002b3556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cycleMeter: {fileID: 79593933}
-  _homeStatus: {fileID: 1691220737}
+  cycleMeter: {fileID: 79593933}
+  homeStatus: {fileID: 1691220737}
   gameInfoTextBox: {fileID: 718194371}
   gameInfoClearDelay: 5
   gameInfoFadeDelay: 0.3
-  fadeAnimDelay: 5
+  fadeAnimDelay: 0.5
 --- !u!222 &1939587281
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -5,7 +5,9 @@ namespace Player
 {
     public class CameraController : MonoBehaviourSingleton<CameraController>
     {
+        [Header("[DEV ONLY]")] // TODO: [DEV ONLY]
         public bool cursorLock = true;
+        public bool cursorVisible = false;
         
         [Header("Sensitivity settings")]
         public float inherentSensitivity;
@@ -45,7 +47,7 @@ namespace Player
             if (!cursorLock) return;
             
             Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = false;
+            Cursor.visible = cursorVisible;
         }
     }
 }
