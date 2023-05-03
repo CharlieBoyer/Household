@@ -10,16 +10,15 @@ namespace Managers
 {
     public class UIManager : MonoBehaviourSingleton<UIManager>
     {
-        [Header("Sub-Components")]
-        public CycleMeter cycleMeter;
+        [Header("Sub-Components")] public CycleMeter cycleMeter;
         public HomeStatus homeStatus;
-        
-        [Header("General UI")]
-        public TMP_Text gameInfoTextBox;
+
+        [Header("General UI")] public TMP_Text gameInfoTextBox;
         public float gameInfoClearDelay;
 
-        [Header("Animation Settings")]
-        [SerializeField] private float gameInfoFadeDelay;
+        [Header("Animation Settings")] [SerializeField]
+        private float gameInfoFadeDelay;
+
         [SerializeField] private float fadeAnimDelay;
         public float FadeAnimDelay => fadeAnimDelay;
 
@@ -28,12 +27,15 @@ namespace Managers
         private string _gameInfo;
         private float _gameInfoClearCountdown;
 
-        private void Start() {
+
+        private void Start()
+        {
             _cycleComplete = true;
         }
-        
+
         //TODO: [DEV ONLY] Test buttons
-        public static void EnableTestsButttons(bool state) {
+        public static void EnableTestsButttons(bool state)
+        {
             GameObject.Find("StartDay").GetComponent<Button>().interactable = state;
             GameObject.Find("StartNight").GetComponent<Button>().interactable = state;
         }
@@ -51,10 +53,11 @@ namespace Managers
             }
         }
 
-        private void ResetAutoClearCountdown() {
+        private void ResetAutoClearCountdown()
+        {
             _gameInfoClearCountdown = gameInfoClearDelay;
         }
-    
+
         private IEnumerator UpdateGameInfoFadeText()
         {
             float t = 0f;
@@ -87,16 +90,16 @@ namespace Managers
                 _gameInfoClearCountdown -= Time.deltaTime;
                 yield return null;
             }
-        
+
             UpdateGameInfo();
         }
-        
-        // CycleMeter
+
+        // CycleMeter Wrapper
         public void UpdateCycleMeter(TimeManager.CyleState state, float cycleProgress)
         {
             if (_cycleComplete)
                 ResetCycleUI(state);
-        
+
             if (cycleProgress >= 1)
             {
                 _cycleComplete = true;
@@ -106,7 +109,8 @@ namespace Managers
             else
             {
                 cycleMeter.slider.value = cycleProgress;
-                if (_displayOnce) {
+                if (_displayOnce)
+                {
                     UpdateGameInfo((state == TimeManager.CyleState.Day) ? "Day Time" : "Night Time");
                     _displayOnce = false;
                 }
@@ -119,12 +123,12 @@ namespace Managers
                 cycleMeter.SetSun();
             else
                 cycleMeter.SetMoon();
-        
+
             _gameInfo = "";
             _displayOnce = true;
             _cycleComplete = false;
         }
-        
-        // HomeStatus
+
+        // HomeStatus Wrapper
     }
 }
