@@ -128,7 +128,5 @@ namespace Managers
             _displayOnce = true;
             _cycleComplete = false;
         }
-
-        // HomeStatus Wrapper
     }
 }

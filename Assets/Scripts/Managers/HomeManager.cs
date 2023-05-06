@@ -21,36 +21,47 @@ namespace Managers
         {
             _ui = UIManager.Instance;
             _maxDurability = initialMaxDurability;
+            _durability = _maxDurability;
+            _ui.homeStatus.UpdateDurability(_clampedDurability, true);
         }
 
-        // Durability Management
         public void TakeDamage(int amount) {
             _durability -= amount;
             _durability = Mathf.Clamp(_durability, 0, _maxDurability);
-            // TODO: UI Update call
+            _ui.homeStatus.UpdateDurability(_clampedDurability, false);
+            _ui.UpdateGameInfo("Under Attack !");
         }
 
         public void Repair(int amount)
         {
             _durability += amount;
             _durability = Mathf.Clamp(_durability, 0, _maxDurability);
-            // TODO: UI Update call
+            _ui.homeStatus.UpdateDurability(_clampedDurability, false);
         }
 
         public void IncreaseMaxDurability(int additionalMaxAmount)
         {
-            float extraGaugeChunks = 0f;
-            int maxAmountBasePercent = additionalMaxAmount / initialMaxDurability;
-
-            extraGaugeChunks = maxAmountBasePercent switch
+            float extraGaugeChunks;
+            float maxAmountBasePercent = (float) additionalMaxAmount / initialMaxDurability;
+            
+            switch (maxAmountBasePercent)
             {
-                _ when maxAmountBasePercent > 0.25 => 0.5f,
-                _ when maxAmountBasePercent > 0.5 => 1f,
-                _ when maxAmountBasePercent > 1 => 2f,
-                _ => 0
-            };
+                case <= 0.5f:
+                    extraGaugeChunks = 0.5f;
+                    break;
+                case > 0.5f and < 1f:
+                    extraGaugeChunks = 1;
+                    break;
+                case >= 1f and < 2.5f:
+                    extraGaugeChunks = 2;
+                    break;
+                default:
+                    extraGaugeChunks = 4;
+                    break;
+            }
 
             _maxDurability += additionalMaxAmount;
+            Repair(additionalMaxAmount);
             _ui.homeStatus.IncreaseMaxGaugeSize(extraGaugeChunks);
         }
     }

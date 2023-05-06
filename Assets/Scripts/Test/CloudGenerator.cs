@@ -69,10 +69,7 @@ public class CloudGenerator
 
         if (vertices == null)
             throw new Exception("Vertices array empty");
-        
-        Debug.Log("Vertices count : " + vertices.Length);
-        Debug.Log("Vertices obj : " + vertices);
-        
+
         return vertices;
     }
 
