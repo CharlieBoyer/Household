@@ -5,6 +5,7 @@ using TMPro;
 
 using Internal;
 using UI;
+using Wave;
 
 namespace Managers
 {
@@ -26,7 +27,6 @@ namespace Managers
         private bool _displayOnce = true;
         private string _gameInfo;
         private float _gameInfoClearCountdown;
-
 
         private void Start()
         {
@@ -95,7 +95,7 @@ namespace Managers
         }
 
         // CycleMeter Wrapper
-        public void UpdateCycleMeter(TimeManager.CyleState state, float cycleProgress)
+        public void UpdateCycleMeter(CyleState state, float cycleProgress)
         {
             if (_cycleComplete)
                 ResetCycleUI(state);
@@ -111,15 +111,15 @@ namespace Managers
                 cycleMeter.slider.value = cycleProgress;
                 if (_displayOnce)
                 {
-                    UpdateGameInfo((state == TimeManager.CyleState.Day) ? "Day Time" : "Night Time");
+                    UpdateGameInfo((state == Wave.CyleState.Day) ? "Day Time" : "Night Time");
                     _displayOnce = false;
                 }
             }
         }
 
-        private void ResetCycleUI(TimeManager.CyleState state)
+        private void ResetCycleUI(CyleState state)
         {
-            if (state == TimeManager.CyleState.Day)
+            if (state == Wave.CyleState.Day)
                 cycleMeter.SetSun();
             else
                 cycleMeter.SetMoon();

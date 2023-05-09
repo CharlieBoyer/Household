@@ -5,6 +5,7 @@ using UnityEngine.VFX;
 
 using Internal;
 using Environment;
+using Wave;
 
 namespace Managers
 {
@@ -53,10 +54,10 @@ namespace Managers
         }
 
         // Light Management
-        public void RotateLight(TimeManager.CyleState currentState, float cycleProgress)
+        public void RotateLight(Wave.CyleState currentState, float cycleProgress)
         {
-            float startAngle = currentState == TimeManager.CyleState.Day ? 0f : 180f;
-            float endAngle = currentState == TimeManager.CyleState.Day ? 180f : 360f;
+            float startAngle = currentState == CyleState.Day ? 0f : 180f;
+            float endAngle = currentState == CyleState.Day ? 180f : 360f;
 
             float angle = Mathf.Lerp(startAngle, endAngle, cycleProgress);
 
