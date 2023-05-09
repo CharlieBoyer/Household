@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: wisp
-  m_Shader: {fileID: -6465566751694194690, guid: a0ad5051bbe618c4eb854a6b95b1090f, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 65ff0e8a082ff8444a1ae882da3caabb, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -92,6 +92,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
+    - _AlphaThreshold: 0
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -110,6 +111,7 @@ Material:
     - _Max: 1.2
     - _Metallic: 1
     - _Min: 0.05
+    - _NoiseScale: 30
     - _OcclusionStrength: 1
     - _OverTime: 1
     - _Parallax: 0.005
@@ -122,12 +124,13 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
+    - _Thickness: 0.01
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.2162639, g: 0, b: 0.3301887, a: 1}
-    - _Color: {r: 0.6488433, g: 0, b: 1, a: 1}
+    - _Color: {r: 0.019977817, g: 0, b: 0.11320752, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GlowColor: {r: 0.27058825, g: 0, b: 0.5, a: 0}
+    - _GlowColor: {r: 1.1843138, g: 0.21960784, b: 2, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
