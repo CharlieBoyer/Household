@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,36 +13,18 @@ namespace Utility
         public bool renderAllColliders = false;
         public List<GameObject> renderList;
 
-        private bool _once = true;
-
         private void Awake()
         {
-            Debug.LogWarning("Warning: OutlineRender utility enabled (DEV ONLY)");
-            
             if (!renderAllColliders) return;
             
             renderList = new List<GameObject>(FindObjectsOfType<Collider>().Select(c => c.gameObject).ToArray());
             UnityEditor.SceneView.RepaintAll();
         }
 
-        private void Update()
-        {
-            if (renderAllColliders && _once) {
-                UnityEditor.SceneView.RepaintAll();
-                _once = false;
-            }
-            else if (!renderAllColliders)
-            {
-                _once = true;
-                renderList.Clear();
-            }
-        }
-
         private void OnDrawGizmos()
         {
             if (!enable)
                 return;
-
             Gizmos.color = Color.yellow;
 
             foreach (GameObject obj in renderList)
