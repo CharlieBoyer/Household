@@ -1287,20 +1287,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!64 &369946540
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149431728358}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8670151273213183110, guid: 0a752b774a35304429427f64914e9893, type: 3}
 --- !u!1 &385517656
 GameObject:
   m_ObjectHideFlags: 0
@@ -1480,7 +1466,7 @@ GameObject:
   - component: {fileID: 533463699}
   - component: {fileID: 533463698}
   m_Layer: 0
-  m_Name: SpawnerAreas
+  m_Name: SpawnAreas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1498,6 +1484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35b26ceefcd4f11afb3400d3abdab1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabs: []
 --- !u!4 &533463699
 Transform:
   m_ObjectHideFlags: 0
@@ -4338,8 +4325,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 30, z: 330}
-  m_Center: {x: -2.5, y: 15, z: -125}
+  m_Size: {x: 5, y: 45, z: 330}
+  m_Center: {x: -2.5, y: 22.5, z: -125}
 --- !u!1 &1402627559
 GameObject:
   m_ObjectHideFlags: 0
@@ -4808,6 +4795,7 @@ MonoBehaviour:
   - {fileID: 318627128}
   - {fileID: 65659012}
   - {fileID: 1394145500}
+  - {fileID: 919132149431728358}
 --- !u!1 &1633813565
 GameObject:
   m_ObjectHideFlags: 0
@@ -7086,7 +7074,7 @@ GameObject:
   - component: {fileID: 543450653422559836}
   - component: {fileID: 3469287837205769721}
   - component: {fileID: 1711813855357393203}
-  - component: {fileID: 369946540}
+  - component: {fileID: 3469287837205769722}
   m_Layer: 6
   m_Name: WaterPlane
   m_TagString: Untagged
@@ -7144,3 +7132,16 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132149431728358}
   m_Mesh: {fileID: -8670151273213183110, guid: 0a752b774a35304429427f64914e9893, type: 3}
+--- !u!65 &3469287837205769722
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149431728358}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 160.00003, y: 40, z: 70.000015}
+  m_Center: {x: 0, y: 20, z: 0}

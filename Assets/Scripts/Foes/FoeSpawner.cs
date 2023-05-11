@@ -5,10 +5,10 @@ namespace Foes
 {
     public class FoeSpawner: MonoBehaviour
     {
-        private List<GameObject> _prefabs;
+        public List<GameObject> prefabs;
 
-        public void SetPrefabs(List<GameObject> prefabs) {
-            _prefabs = prefabs;
+        public void SetPrefabs(List<GameObject> foesPrefabs) {
+            prefabs = foesPrefabs;
         }
     }
 }
