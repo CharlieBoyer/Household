@@ -7,7 +7,6 @@ namespace Foes
 {
     public abstract class Foe : MonoBehaviour
     {
-        public new string name; // 'new' keyword hide UnityEngine.Object.name base property and allow independence
         public int maxHealth;
         public float movementSpeed;
         

@@ -7,7 +7,6 @@ namespace Foes.Species
     {
         public Wisp()
         {
-            name = "Wisp";
         }
     }
 }

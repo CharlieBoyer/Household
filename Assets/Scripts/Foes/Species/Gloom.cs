@@ -6,7 +6,6 @@ namespace Foes.Species
     {
         public Gloom()
         {
-            name = "Gloom";
         }
     }
 }
