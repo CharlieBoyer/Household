@@ -24,7 +24,7 @@ namespace Environment
         public CloudsHandler(VisualEffect graph)
         {
             if (graph == null)
-                throw new Exception("Unable to initialize CloudsHandler: Invalid VFX Graph");
+                throw new Exception("CloudHandler > Unable to initialize/Invalid VFX Graph");
 
             _graph = graph;
             _world = WorldManager.Instance;
@@ -48,7 +48,7 @@ namespace Environment
                     SetCloudState(100, 7, -100, 5);
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(weather), weather, "Unable to UpdateClouds: invalid Weather state");
+                    throw new ArgumentOutOfRangeException(nameof(weather), weather, "CloudsHandler > Invalid Weather state");
             }
         }
 

@@ -85,7 +85,7 @@ namespace Managers
                     targetColor = rainyColor;
                     break;
                 default:
-                      throw new ArgumentOutOfRangeException(nameof(weather), weather, "Unable to SetLightColor: Invalid Weather state");  
+                      throw new ArgumentOutOfRangeException(nameof(weather), weather, "WorldManager > Invalid Weather state");  
             }
             
             StartCoroutine(TransitionLightColor(targetColor, lightTransitionTime));

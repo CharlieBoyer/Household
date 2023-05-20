@@ -15,7 +15,8 @@ namespace Wave
         public List<GameObject> foesTypes;
         public List<int> foesNumbers;
 
-        [Header("Wave Modifier")]
+        [Header("Modifiers")]
+        public float spawnRate;
         public bool addModifier;
         public WaveModifier modifier;
     }

@@ -30,7 +30,7 @@ public class CloudGenerator
 
         meshRenderer.material = (pipelineAsset != null)
             ? pipelineAsset.defaultMaterial
-            : throw new Exception("Invalid URP Asset; Could not assign a default material");
+            : throw new Exception("CloudGenerator > Invalid URP Asset; Could not assign a default material");
 
         Mesh mesh = new Mesh
         {
@@ -68,7 +68,7 @@ public class CloudGenerator
         }
 
         if (vertices == null)
-            throw new Exception("Vertices array empty");
+            throw new Exception("CloudGenerator > Vertices array empty");
 
         return vertices;
     }

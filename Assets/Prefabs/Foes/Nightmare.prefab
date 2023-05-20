@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 5656775939559597644}
   - component: {fileID: 5656775939559597647}
   - component: {fileID: 5656775939559597744}
-  - component: {fileID: 5656775939559597745}
-  m_Layer: 0
+  - component: {fileID: 3574982284340091059}
+  m_Layer: 9
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Foe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,8 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ca01489d0fa14c43967de49296eb803, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Nightmare
-  maxHealth: 100
+  maxHealth: 200
   movementSpeed: 1
   attackPreparationDelay: 5
   attackSpeed: 10
@@ -103,8 +102,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5656775939559597745
-CapsuleCollider:
+--- !u!65 &3574982284340091059
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -113,9 +112,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5656775940720807962
 GameObject:
@@ -128,9 +126,9 @@ GameObject:
   - component: {fileID: 5656775940720807959}
   - component: {fileID: 5656775940720807960}
   - component: {fileID: 5656775940720807961}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Nightmare
-  m_TagString: Untagged
+  m_TagString: Foe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,7 +158,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5656775940720807962}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2.7
+  m_Radius: 2.5
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -185,3 +183,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf392b818fa418e8d412ae2ba073570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopDistance: 10
+  enableAutoBrake: 1

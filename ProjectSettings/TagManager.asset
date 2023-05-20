@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Home
   - Limits
+  - Foe
   layers:
   - Default
   - TransparentFX
@@ -15,10 +16,10 @@ TagManager:
   - UI
   - Limits
   - Rain
-  - 
-  - 
-  - 
-  - 
+  - Spawn
+  - Foes
+  - Home
+  - Player
   - 
   - 
   - 

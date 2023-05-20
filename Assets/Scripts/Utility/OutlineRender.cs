@@ -29,18 +29,18 @@ namespace Utility
 
             foreach (GameObject obj in renderList)
             {
-                Renderer componentRenderer = obj.GetComponent<Renderer>();
-                if (componentRenderer != null)
+                Collider componentCollider = obj.GetComponent<Collider>();
+                if (componentCollider != null)
                 {
-                    Bounds bounds = componentRenderer.bounds;
+                    Bounds bounds = componentCollider.bounds;
                     Gizmos.DrawWireCube(bounds.center, bounds.size);
                 }
                 else
                 {
-                    Collider componentCollider = obj.GetComponent<Collider>();
-                    if (componentCollider != null)
+                    Renderer componentRenderer = obj.GetComponent<Renderer>();
+                    if (componentRenderer != null)
                     {
-                        Bounds bounds = componentCollider.bounds;
+                        Bounds bounds = componentRenderer.bounds;
                         Gizmos.DrawWireCube(bounds.center, bounds.size);
                     }
                 }

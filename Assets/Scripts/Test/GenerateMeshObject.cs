@@ -69,7 +69,7 @@ namespace Test
             UniversalRenderPipelineAsset pipelineAsset = GraphicsSettings.renderPipelineAsset as UniversalRenderPipelineAsset;
             meshRenderer.material = (pipelineAsset != null)
                 ? pipelineAsset.defaultMaterial
-                : throw new Exception("Invalid URP Asset; Could not assign a default material");
+                : throw new Exception("GenerateMeshObject > Invalid URP Asset");
         }
     }
 }

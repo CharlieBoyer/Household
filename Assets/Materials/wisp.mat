@@ -107,15 +107,15 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _GlowPower: 1.5
-    - _GlowSpeed: 1.5
-    - _Max: 1.2
+    - _GlowSpeed: 2
+    - _Max: 1.5
     - _Metallic: 1
-    - _Min: 0.05
+    - _Min: 0
     - _NoiseScale: 30
     - _OcclusionStrength: 1
     - _OverTime: 1
     - _Parallax: 0.005
-    - _PartialGlow: 0
+    - _PartialGlow: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1

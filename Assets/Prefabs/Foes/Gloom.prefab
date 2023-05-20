@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8722921788825768852}
   - component: {fileID: 8722921788825768855}
   - component: {fileID: 8722921788825768854}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Foe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,9 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b0544e85ccb5374da06b0bfb678c779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Gloom
   maxHealth: 50
-  movementSpeed: 10
+  movementSpeed: 7
   attackPreparationDelay: 5
   attackSpeed: 10
   attackDamages: 20
@@ -127,9 +126,9 @@ GameObject:
   - component: {fileID: 8722921789566541413}
   - component: {fileID: 8722921789566541412}
   - component: {fileID: 8722921789566541415}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Gloom
-  m_TagString: Untagged
+  m_TagString: Foe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,3 +183,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf392b818fa418e8d412ae2ba073570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopDistance: 10
+  enableAutoBrake: 1

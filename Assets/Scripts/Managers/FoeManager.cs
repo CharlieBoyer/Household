@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 using Internal;
@@ -8,15 +9,6 @@ namespace Managers
 {
     public class FoeManager: MonoBehaviourSingleton<FoeManager>
     {
-        public List<GameObject> spawnAreas;
-        public List<GameObject> foes; 
-
-        private void Start()
-        {
-            foreach (GameObject area in spawnAreas)
-            {
-                area.GetComponent<FoeSpawner>().SetPrefabs(foes);
-            }
-        }
+        public FoeSpawner spawner;
     }
 }
