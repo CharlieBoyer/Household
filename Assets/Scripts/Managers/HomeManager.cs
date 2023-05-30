@@ -31,6 +31,11 @@ namespace Managers
             _durability = Mathf.Clamp(_durability, 0, _maxDurability);
             _ui.homeStatus.UpdateDurability(_clampedDurability, false);
             _ui.UpdateGameInfo("Under Attack !");
+
+            if (_durability <= 0)
+            {
+                GameManager.Instance.GameOver();
+            }
         }
 
         public void Repair(int amount)

@@ -41,11 +41,13 @@ namespace Managers
             _currentWave = wave;
             
             _currentState = CyleState.Day;
+            AudioManager.Instance.ChangeTo(AudioManager.AmbienceType.Day);
             yield return StartCoroutine(CycleTime());
             
             yield return _interStateDelay;
             
             _currentState = CyleState.Night;
+            AudioManager.Instance.ChangeTo(AudioManager.AmbienceType.Night);
             StartWave();
             yield return StartCoroutine(CycleTime());
             

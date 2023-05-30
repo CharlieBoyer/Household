@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Internal;
-using Unity.VisualScripting;
 using UnityEngine;
 
 using Wave;
@@ -50,6 +48,11 @@ namespace Managers
             {
                 timer -= Time.deltaTime;
             }
+        }
+
+        public void GameOver()
+        {
+            
         }
     }
 }
