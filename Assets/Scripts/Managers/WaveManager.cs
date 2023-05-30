@@ -1,49 +1,71 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 using Internal;
 using Wave;
+using Foes;
 
 namespace Managers
 {
     public class WaveManager : MonoBehaviourSingleton<WaveManager>
     {
         [Header("Time cycle settings")]
-        public float dayDuration;
-        public float nightDuration;
-        public float timeMulitplier;
+        public float globalTimeMulitplier;
+        public float interStateDelay;
+        
+        [Header("Foe Managament")]
+        public FoeSpawner spawner;
 
-        [Header("Starting Waves")]
-        public List<WaveObject> waves;
-
+        private WaveObject _currentWave;
         private CyleState _currentState;
+        private WaitForSeconds _interStateDelay;
 
-        public void StartDayTime() {
-            _currentState = CyleState.Day;
-            WorldManager.Instance.MoonRise(false);
-            StartCoroutine(CycleTime());
+        private void Awake()
+        {
+            _interStateDelay = new WaitForSeconds(interStateDelay);
         }
-    
-        public void StartNightTime() {
+
+        public void StartCycle(WaveObject wave)
+        {
+            StartCoroutine(StartCycleCoroutine(wave));
+        }
+        
+        private void StartWave()
+        {
+            spawner.SpawnWave(_currentWave);
+        }
+
+        private IEnumerator StartCycleCoroutine(WaveObject wave)
+        {
+            _currentWave = wave;
+            
+            _currentState = CyleState.Day;
+            yield return StartCoroutine(CycleTime());
+            
+            yield return _interStateDelay;
+            
             _currentState = CyleState.Night;
-            WorldManager.Instance.MoonRise(true);
-            StartCoroutine(CycleTime());
+            StartWave();
+            yield return StartCoroutine(CycleTime());
+            
         }
 
         private IEnumerator CycleTime()
         {
             float progress = 0f;
             float timer = 0f;
+            float duration = (_currentState == CyleState.Day ? _currentWave.startTime : _currentWave.duration);
             
             UIManager.EnableTestsButttons(false);
 
             while (progress < 1)
             {
-                timer += Time.deltaTime * timeMulitplier;
-                progress = timer / (_currentState == CyleState.Day ? dayDuration : nightDuration);
+                timer += Time.deltaTime * globalTimeMulitplier;
+                progress = timer / duration;
                 UIManager.Instance.UpdateCycleMeter(_currentState, progress);
                 WorldManager.Instance.RotateLight(_currentState, progress);
+
                 yield return null;
             }
 

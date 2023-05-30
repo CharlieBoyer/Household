@@ -8,6 +8,7 @@ namespace Editor
     [CustomEditor(typeof(WaveObject))]
     public class WaveObjectEditor : UnityEditor.Editor
     {
+        private SerializedProperty _startTimeProp;
         private SerializedProperty _durationProp;
         private SerializedProperty _weatherProp;
         private SerializedProperty _foesTypesProp;
@@ -20,6 +21,7 @@ namespace Editor
 
         private void OnEnable()
         {
+            _startTimeProp = serializedObject.FindProperty("startTime");
             _durationProp = serializedObject.FindProperty("duration");
             _weatherProp = serializedObject.FindProperty("weather");
             _foesTypesProp = serializedObject.FindProperty("foesTypes");
@@ -33,6 +35,9 @@ namespace Editor
         {
             serializedObject.Update();
 
+            EditorGUILayout.LabelField("Wave Parameters", EditorStyles.boldLabel);
+            EditorGUILayout.Space();
+            EditorGUILayout.PropertyField(_startTimeProp);
             EditorGUILayout.PropertyField(_durationProp);
             EditorGUILayout.PropertyField(_weatherProp);
 

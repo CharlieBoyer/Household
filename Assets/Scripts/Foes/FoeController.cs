@@ -1,53 +1,80 @@
 ﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace Foes
 {
     public class FoeController : MonoBehaviour
     {
-        [Header("NavAgent Control Settings")] public int stopDistance;
+        [Header("NavAgent Control Settings")]
+        public int stopDistance;
         public bool enableAutoBrake;
+        public float navMeshEdgeDetectionRadius;
 
+        private Foe _body;
         private NavMeshAgent _navAgent;
         private Transform _target;
 
+        private float _gravityForce;
+
         private void Awake()
         {
+            _body = GetComponentInChildren<Foe>();
             _target = GameObject.Find("Home").transform;
 
             _navAgent = GetComponent<NavMeshAgent>();
             _navAgent.stoppingDistance = stopDistance;
             _navAgent.autoBraking = enableAutoBrake;
-            _navAgent.speed = GetComponentInChildren<Foe>().movementSpeed;
+            _navAgent.speed = _body.movementSpeed;
+            
+            StartAgent();
         }
 
-        public void StartAI()
+        private void OnTriggerEnter(Collider other)
         {
-            SetDestinationToNearestBound();
+            if (other.CompareTag("Home"))
+                StopAgent();
+            
+            _body.CollisionTrigger(other);
         }
 
-        private void SetDestinationToNearestBound()
+        public void StartAgent()
         {
-            if (_target == null)
+            Vector3 closestPointToHome = GetClosestPointToHome();
+
+            NavMeshHit navMeshHit;
+            if (NavMesh.SamplePosition(closestPointToHome, out navMeshHit, navMeshEdgeDetectionRadius, NavMesh.AllAreas))
             {
-                Debug.LogError("FoeController > Target is not set for FoeController!");
-                return;
+                _navAgent.destination = navMeshHit.position;
+            }
+        }
+
+        private void StopAgent()
+        {
+            _navAgent.isStopped = true;
+            _navAgent.velocity = Vector3.zero;
+        }
+
+        private Vector3 GetClosestPointToHome()
+        {
+            Vector3 currentPosition = transform.position;
+            Vector3 homePosition = _target.position;
+            Vector3 rayDirection = homePosition - currentPosition;
+
+            RaycastHit hit;
+            if (Physics.Raycast(currentPosition, rayDirection, out hit, Mathf.Infinity))
+            {
+                // Draw the raycast in the Unity Editor
+                Debug.DrawRay(currentPosition, rayDirection, Color.red);
+                return hit.point;
             }
 
-            Vector3 targetPosition = _target.position;
-            NavMeshHit hit;
-            if (NavMesh.Raycast(targetPosition, transform.position, out hit, NavMesh.AllAreas))
-            {
-                _navAgent.SetDestination(hit.position);
-            }
-            else
-            {
-                Debug.LogError("FoeController > Failed to find valid destination on NavMesh!");
+            // Draw a ray extending to infinity if no hit is detected
+            Debug.DrawRay(currentPosition, rayDirection, Color.blue);
 
-                // Draw the raycast for debugging purposes
-                Debug.DrawRay(targetPosition, transform.position - targetPosition, Color.red);
-            }
+            return currentPosition;
         }
     }
 }

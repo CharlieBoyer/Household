@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c808c7b4144b0f8e91a1e3304887b9, type: 3}
   m_Name: Wave1
   m_EditorClassIdentifier: 
+  startTime: 10
   duration: 30
   weather: 1
   foesTypes:
   - {fileID: 4194081854066800020, guid: 721736c39e033cc4c946a3f56def6c24, type: 3}
-  foesNumbers: 0a000000
+  foesNumbers: 01000000
   spawnRate: 2
   addModifier: 0
   modifier: 0

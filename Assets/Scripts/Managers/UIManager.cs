@@ -36,8 +36,7 @@ namespace Managers
         //TODO: [DEV ONLY] Test buttons
         public static void EnableTestsButttons(bool state)
         {
-            GameObject.Find("StartDay").GetComponent<Button>().interactable = state;
-            GameObject.Find("StartNight").GetComponent<Button>().interactable = state;
+            GameObject.Find("StartWave").GetComponent<Button>().interactable = state;
         }
 
         // GameInfo

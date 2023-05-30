@@ -8,6 +8,7 @@ namespace Wave
     public class WaveObject: ScriptableObject
     {
         [Header("Wave type")]
+        public int startTime;
         public int duration;
         public Weather weather;
 

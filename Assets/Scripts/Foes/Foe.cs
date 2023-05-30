@@ -19,17 +19,23 @@ namespace Foes
         private bool _isAttacking;
         private float _currentHealth;
 
+        private Renderer _renderer;
+        private MaterialPropertyBlock _material;
+
         protected virtual void Start()
         {
+            _renderer = GetComponent<Renderer>();
+            _material = new MaterialPropertyBlock();
+            
             _currentHealth = maxHealth;
             _isAlive = true;
             _isAttacking = false;
         }
 
-        protected void OnCollisionEnter(Collision collision)
+        public virtual void CollisionTrigger(Collider contextObject)
         {
-            string colliderObject = collision.gameObject.tag;
-
+            string colliderObject = contextObject.gameObject.tag;
+            
             switch (colliderObject)
             {
                 case "Home" when _isAttacking == false:
@@ -48,6 +54,7 @@ namespace Foes
             _isAttacking = true;
             yield return new WaitForSeconds(attackPreparationDelay);
 
+            UpdateColorShaderProperty("_GlowColor", Color.yellow);
             while (_isAlive) {
                 Attack();
                 yield return new WaitForSeconds(attackSpeed);
@@ -74,6 +81,12 @@ namespace Foes
                 // TODO: Count kills ?
                 Destroy(this.gameObject);
             }
+        }
+
+        private void UpdateColorShaderProperty(string property, Color color)
+        {
+            _material.SetColor(property, color);
+            _renderer.SetPropertyBlock(_material);
         }
     }
 }

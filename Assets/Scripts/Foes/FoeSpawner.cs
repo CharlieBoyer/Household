@@ -64,7 +64,7 @@ namespace Foes
                 GameObject newFoe = Instantiate(foePrefab, container.transform);
 
                 newFoe.transform.position = GetSpawnPosition();
-                newFoe.GetComponent<FoeController>().StartAI();
+                newFoe.GetComponent<FoeController>().StartAgent();
                 
                 yield return new WaitForSeconds(_nextWave.spawnRate);
             }
