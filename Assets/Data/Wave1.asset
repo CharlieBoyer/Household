@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startTime: 15
   duration: 30
-  weather: 3
+  weather: 1
   foesTypes:
   - {fileID: 4194081854066800020, guid: 721736c39e033cc4c946a3f56def6c24, type: 3}
   - {fileID: 6970311104911452253, guid: 7c81d7c013c6e8b4eaab77114d39284a, type: 3}

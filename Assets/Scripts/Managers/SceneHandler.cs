@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using Internal;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -53,7 +52,7 @@ namespace Managers
         private IEnumerator LoadGameWithTransition()
         {
             animator.SetTrigger(StartState);
-            _audioManager.FadeSound();
+            StartCoroutine(_audioManager.FadeSound());
 
             yield return _transitionTime;
 
@@ -63,11 +62,10 @@ namespace Managers
         private IEnumerator ExitWithTransition()
         {
             animator.SetTrigger(StartState);
-            _audioManager.FadeSound();
+            StartCoroutine(_audioManager.FadeSound());
 
             yield return _transitionTime;
 
-            EditorApplication.ExitPlaymode(); // Remove before clean build
             Application.Quit();
         }
     }

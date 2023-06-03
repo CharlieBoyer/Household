@@ -18,6 +18,11 @@ namespace Managers
         private void FixedUpdate()
         {
             _remainingActiveFoes = GameObject.Find("FoeContainer").transform.childCount;
+
+            if (Input.GetButtonDown("Cancel"))
+            {
+                Application.Quit();
+            }
         }
 
         public void StartGame()
